@@ -1,7 +1,7 @@
 Name:    guest-templates-json
 Summary: Creates the default guest templates
 Version: 1.9.6
-Release: 1.2%{?dist}
+Release: 1.3%{?dist}
 License: BSD
 
 Source0: https://code.citrite.net/rest/archive/latest/projects/XS/repos/guest-templates-json/archive?at=v1.9.6&format=tar.gz&prefix=guest-templates-json-1.9.6#/guest-templates-json-1.9.6.tar.gz
@@ -15,6 +15,7 @@ Source1004: centos-stream-9.json
 Source1005: oel-9.json
 Source1006: rhel-9.json
 Source1007: rocky-9.json
+Source1008: debian-12.json
 
 Provides: gitsha(https://code.citrite.net/rest/archive/latest/projects/XS/repos/guest-templates-json/archive?at=v1.9.6&format=tar.gz&prefix=guest-templates-json-1.9.6#/guest-templates-json-1.9.6.tar.gz) = 7c1a85a4cba851a1abb2f54d884f1345b648ee38
 
@@ -79,7 +80,7 @@ Contains the default other guest templates.
 
 install -d %{buildroot}%{templatedir}
 install -m 644 json/*.json %{buildroot}%{templatedir}
-install -m 644 %{SOURCE1000} %{SOURCE1001} %{SOURCE1002} %{SOURCE1003} %{SOURCE1004} %{SOURCE1005} %{SOURCE1006} %{SOURCE1007} %{buildroot}%{templatedir}
+install -m 644 %{SOURCE1000} %{SOURCE1001} %{SOURCE1002} %{SOURCE1003} %{SOURCE1004} %{SOURCE1005} %{SOURCE1006} %{SOURCE1007} %{SOURCE1008} %{buildroot}%{templatedir}
 install -d %{buildroot}%{_sysconfdir}/xapi.d/vm-templates
 
 install -m 755 service/create-guest-templates-wrapper %{buildroot}%{_bindir}
@@ -195,6 +196,9 @@ fi
 %{templatedir}/other-install-media.json
 
 %changelog
+* Fri Jul 24 2023 Gael Duperrey <gduperrey@vates.fr> - 1.9.6-1.3
+- Add template for Debian 12
+
 * Fri Jan 06 2023 Gael Duperrey <gduperrey@vates.fr> - 1.9.6-1.2
 - Add templates for rhel 9, CentOS Stream 8 and 9, Almalinux 9, Rockylinux 9, Oracle linux 9
 

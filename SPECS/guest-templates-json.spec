@@ -196,7 +196,7 @@ fi
 %{templatedir}/other-install-media.json
 
 %changelog
-* Fri Jul 24 2023 Gael Duperrey <gduperrey@vates.fr> - 1.9.6-1.3
+* Mon Jul 24 2023 Gael Duperrey <gduperrey@vates.fr> - 1.9.6-1.3
 - Add template for Debian 12
 
 * Fri Jan 06 2023 Gael Duperrey <gduperrey@vates.fr> - 1.9.6-1.2

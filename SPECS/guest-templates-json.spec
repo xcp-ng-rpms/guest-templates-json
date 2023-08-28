@@ -1,23 +1,21 @@
+%global package_speccommit 57ab70568ef4d43b737c9ff3e985c7e588e47d0d
+%global package_srccommit v1.10.4
 Name:    guest-templates-json
 Summary: Creates the default guest templates
-Version: 1.9.6
-Release: 1.3%{?dist}
+Version: 1.10.4
+Release: 2%{?xsrel}.1%{?dist}
 License: BSD
-
-Source0: https://code.citrite.net/rest/archive/latest/projects/XS/repos/guest-templates-json/archive?at=v1.9.6&format=tar.gz&prefix=guest-templates-json-1.9.6#/guest-templates-json-1.9.6.tar.gz
+Source0: guest-templates-json-1.10.4.tar.gz
 
 # XCP-ng patches
 Source1000: almalinux-8.json
-Source1001: debian-11.json
-Source1002: almalinux-9.json
-Source1003: centos-stream-8.json
-Source1004: centos-stream-9.json
-Source1005: oel-9.json
-Source1006: rhel-9.json
-Source1007: rocky-9.json
-Source1008: debian-12.json
-
-Provides: gitsha(https://code.citrite.net/rest/archive/latest/projects/XS/repos/guest-templates-json/archive?at=v1.9.6&format=tar.gz&prefix=guest-templates-json-1.9.6#/guest-templates-json-1.9.6.tar.gz) = 7c1a85a4cba851a1abb2f54d884f1345b648ee38
+Source1001: almalinux-9.json
+Source1002: centos-stream-8.json
+Source1003: centos-stream-9.json
+Source1004: oel-9.json
+Source1005: rhel-9.json
+Source1006: rocky-9.json
+Source1007: debian-12.json
 
 BuildArch: noarch
 
@@ -36,7 +34,6 @@ Creates the default guest templates during first boot or package
 install/upgrade.
 
 %package data-pv
-Provides: gitsha(https://code.citrite.net/rest/archive/latest/projects/XS/repos/guest-templates-json/archive?at=v1.9.6&format=tar.gz&prefix=guest-templates-json-1.9.6#/guest-templates-json-1.9.6.tar.gz) = 7c1a85a4cba851a1abb2f54d884f1345b648ee38
 Summary: Contains the PV guest templates
 Requires(post): %{name} = %{version}-%{release}
 
@@ -44,7 +41,6 @@ Requires(post): %{name} = %{version}-%{release}
 Contains the PV guest templates.
 
 %package data-linux
-Provides: gitsha(https://code.citrite.net/rest/archive/latest/projects/XS/repos/guest-templates-json/archive?at=v1.9.6&format=tar.gz&prefix=guest-templates-json-1.9.6#/guest-templates-json-1.9.6.tar.gz) = 7c1a85a4cba851a1abb2f54d884f1345b648ee38
 Summary: Contains the default Linux guest templates
 Requires(post): %{name} = %{version}-%{release}
 
@@ -52,7 +48,6 @@ Requires(post): %{name} = %{version}-%{release}
 Contains the default Linux guest templates.
 
 %package data-windows
-Provides: gitsha(https://code.citrite.net/rest/archive/latest/projects/XS/repos/guest-templates-json/archive?at=v1.9.6&format=tar.gz&prefix=guest-templates-json-1.9.6#/guest-templates-json-1.9.6.tar.gz) = 7c1a85a4cba851a1abb2f54d884f1345b648ee38
 Summary: Contains the default Windows guest templates
 Requires(post): %{name} = %{version}-%{release}
 
@@ -60,7 +55,6 @@ Requires(post): %{name} = %{version}-%{release}
 Contains the default Windows guest templates.
 
 %package data-other
-Provides: gitsha(https://code.citrite.net/rest/archive/latest/projects/XS/repos/guest-templates-json/archive?at=v1.9.6&format=tar.gz&prefix=guest-templates-json-1.9.6#/guest-templates-json-1.9.6.tar.gz) = 7c1a85a4cba851a1abb2f54d884f1345b648ee38
 Summary: Contains the default other guest templates
 Requires(post): %{name} = %{version}-%{release}
 
@@ -80,7 +74,7 @@ Contains the default other guest templates.
 
 install -d %{buildroot}%{templatedir}
 install -m 644 json/*.json %{buildroot}%{templatedir}
-install -m 644 %{SOURCE1000} %{SOURCE1001} %{SOURCE1002} %{SOURCE1003} %{SOURCE1004} %{SOURCE1005} %{SOURCE1006} %{SOURCE1007} %{SOURCE1008} %{buildroot}%{templatedir}
+install -m 644 %{SOURCE1000} %{SOURCE1001} %{SOURCE1002} %{SOURCE1003} %{SOURCE1004} %{SOURCE1005} %{SOURCE1006} %{SOURCE1007} %{buildroot}%{templatedir}
 install -d %{buildroot}%{_sysconfdir}/xapi.d/vm-templates
 
 install -m 755 service/create-guest-templates-wrapper %{buildroot}%{_bindir}
@@ -196,6 +190,13 @@ fi
 %{templatedir}/other-install-media.json
 
 %changelog
+* Mon Aug 28 2023 Gael Duperrey <gduperrey@vates.fr> - 1.10.4-2.1
+- Sync with hotfix XS82ECU1036
+- Remove XCP-ng's version of debian 11 template as it is now provided from upstream
+- *** Upstream changelog ***
+- * Thu Jun 29 2023 Lunfan Zhang <Lunfan.Zhang@citrix.com> - 1.10.4-1
+- - CP-42910: Add Debian 11 and Ubuntu 2204 template
+
 * Mon Jul 24 2023 Gael Duperrey <gduperrey@vates.fr> - 1.9.6-1.3
 - Add template for Debian 12
 

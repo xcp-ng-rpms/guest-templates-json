@@ -1,11 +1,11 @@
-%global package_speccommit 57ab70568ef4d43b737c9ff3e985c7e588e47d0d
-%global package_srccommit v1.10.4
+%global package_speccommit a1e83e08d2b722c0932bb059055e7bf8d4f8c4f5
+%global package_srccommit v1.10.5
 Name:    guest-templates-json
 Summary: Creates the default guest templates
-Version: 1.10.4
-Release: 2%{?xsrel}%{?dist}
+Version: 1.10.5
+Release: 1%{?xsrel}%{?dist}
 License: BSD
-Source0: guest-templates-json-1.10.4.tar.gz
+Source0: guest-templates-json-1.10.5.tar.gz
 BuildArch: noarch
 
 Requires: xapi-core
@@ -159,7 +159,7 @@ fi
 %{templatedir}/debian*.json
 %{templatedir}/kylin-7.json
 %{templatedir}/oel-[78].json
-%{templatedir}/rhel-[78].json
+%{templatedir}/rhel-[789].json
 %{templatedir}/sl-7.json
 %{templatedir}/sle-15-64bit.json
 %{templatedir}/sled-12-sp[34]-64bit.json
@@ -176,6 +176,9 @@ fi
 %{templatedir}/other-install-media.json
 
 %changelog
+* Fri Aug 18 2023 Lunfan Zhang <Lunfan.Zhang@citrix.com> - 1.10.5-1
+- CP-42910: Add Red Hat Enterprise Linux 9 template
+
 * Thu Jun 29 2023 Lunfan Zhang <Lunfan.Zhang@citrix.com> - 1.10.4-1
 - CP-42910: Add Debian 11 and Ubuntu 2204 template
 

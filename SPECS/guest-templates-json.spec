@@ -1,11 +1,11 @@
-%global package_speccommit 57ab70568ef4d43b737c9ff3e985c7e588e47d0d
-%global package_srccommit v1.10.4
+%global package_speccommit a1e83e08d2b722c0932bb059055e7bf8d4f8c4f5
+%global package_srccommit v1.10.5
 Name:    guest-templates-json
 Summary: Creates the default guest templates
-Version: 1.10.4
-Release: 2%{?xsrel}.1%{?dist}
+Version: 1.10.5
+Release: 1%{?xsrel}.1%{?dist}
 License: BSD
-Source0: guest-templates-json-1.10.4.tar.gz
+Source0: guest-templates-json-1.10.5.tar.gz
 
 # XCP-ng patches
 Source1000: almalinux-8.json
@@ -13,9 +13,8 @@ Source1001: almalinux-9.json
 Source1002: centos-stream-8.json
 Source1003: centos-stream-9.json
 Source1004: oel-9.json
-Source1005: rhel-9.json
-Source1006: rocky-9.json
-Source1007: debian-12.json
+Source1005: rocky-9.json
+Source1006: debian-12.json
 
 BuildArch: noarch
 
@@ -74,7 +73,7 @@ Contains the default other guest templates.
 
 install -d %{buildroot}%{templatedir}
 install -m 644 json/*.json %{buildroot}%{templatedir}
-install -m 644 %{SOURCE1000} %{SOURCE1001} %{SOURCE1002} %{SOURCE1003} %{SOURCE1004} %{SOURCE1005} %{SOURCE1006} %{SOURCE1007} %{buildroot}%{templatedir}
+install -m 644 %{SOURCE1000} %{SOURCE1001} %{SOURCE1002} %{SOURCE1003} %{SOURCE1004} %{SOURCE1005} %{SOURCE1006} %{buildroot}%{templatedir}
 install -d %{buildroot}%{_sysconfdir}/xapi.d/vm-templates
 
 install -m 755 service/create-guest-templates-wrapper %{buildroot}%{_bindir}
@@ -190,6 +189,13 @@ fi
 %{templatedir}/other-install-media.json
 
 %changelog
+* Fri Sep 08 2023 Gael Duperrey <gduperrey@vates.fr> - 1.10.5-1.1
+- Sync with hotfix XS82ECU1046
+- Remove XCP-ng's version of RHEL 9 template as it is now provided from upstream
+- *** Upstream changelog ***
+- * Fri Aug 18 2023 Lunfan Zhang <Lunfan.Zhang@citrix.com> - 1.10.5-1
+- - CP-42910: Add Red Hat Enterprise Linux 9 template
+
 * Mon Aug 28 2023 Gael Duperrey <gduperrey@vates.fr> - 1.10.4-2.1
 - Sync with hotfix XS82ECU1036
 - Remove XCP-ng's version of debian 11 template as it is now provided from upstream

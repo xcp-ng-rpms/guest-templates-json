@@ -1,20 +1,17 @@
-%global package_speccommit a1e83e08d2b722c0932bb059055e7bf8d4f8c4f5
-%global package_srccommit v1.10.5
+%global package_speccommit ed2fbb36c067c4279312bcc674e1528146ef27fa
+%global package_srccommit v1.10.6
 Name:    guest-templates-json
 Summary: Creates the default guest templates
-Version: 1.10.5
+Version: 1.10.6
 Release: 1%{?xsrel}.1%{?dist}
 License: BSD
-Source0: guest-templates-json-1.10.5.tar.gz
+Source0: guest-templates-json-1.10.6.tar.gz
 
 # XCP-ng patches
 Source1000: almalinux-8.json
 Source1001: almalinux-9.json
 Source1002: centos-stream-8.json
-Source1003: centos-stream-9.json
-Source1004: oel-9.json
-Source1005: rocky-9.json
-Source1006: debian-12.json
+Source1003: oel-9.json
 
 BuildArch: noarch
 
@@ -73,7 +70,7 @@ Contains the default other guest templates.
 
 install -d %{buildroot}%{templatedir}
 install -m 644 json/*.json %{buildroot}%{templatedir}
-install -m 644 %{SOURCE1000} %{SOURCE1001} %{SOURCE1002} %{SOURCE1003} %{SOURCE1004} %{SOURCE1005} %{SOURCE1006} %{buildroot}%{templatedir}
+install -m 644 %{SOURCE1000} %{SOURCE1001} %{SOURCE1002} %{SOURCE1003} %{buildroot}%{templatedir}
 install -d %{buildroot}%{_sysconfdir}/xapi.d/vm-templates
 
 install -m 755 service/create-guest-templates-wrapper %{buildroot}%{_bindir}
@@ -166,8 +163,8 @@ fi
 %{templatedir}/base-kylin-7.json
 %{templatedir}/base-sle-hvm-64bit.json
 %{templatedir}/base-sle-hvm.json
-%{templatedir}/centos-[78].json
-%{templatedir}/centos-stream-[89].json
+%{templatedir}/centos-[789].json
+%{templatedir}/centos-stream-8.json
 %{templatedir}/coreos.json
 %{templatedir}/debian*.json
 %{templatedir}/kylin-7.json
@@ -189,6 +186,13 @@ fi
 %{templatedir}/other-install-media.json
 
 %changelog
+* Tue Sep 26 2023 Gael Duperrey <gduperrey@vates.fr> - 1.10.6-1.1
+- Sync with hotfix XS82ECU1050
+- Remove XCP-ng's versions of Debian 12, Rocky Linux 9, and Centos Stream 9 templates as they are now provided from upstream
+- *** Upstream changelog ***
+- * Thu Sep 14 2023 Lunfan Zhang <Lunfan.Zhang@citrix.com> - 1.10.6-1
+- - UPD-956: Backport Rocky Linux 9, CentOS Stream 9 and Debian 12's templates to Yangtze
+
 * Fri Sep 08 2023 Gael Duperrey <gduperrey@vates.fr> - 1.10.5-1.1
 - Sync with hotfix XS82ECU1046
 - Remove XCP-ng's version of RHEL 9 template as it is now provided from upstream

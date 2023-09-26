@@ -1,11 +1,11 @@
-%global package_speccommit a1e83e08d2b722c0932bb059055e7bf8d4f8c4f5
-%global package_srccommit v1.10.5
+%global package_speccommit ed2fbb36c067c4279312bcc674e1528146ef27fa
+%global package_srccommit v1.10.6
 Name:    guest-templates-json
 Summary: Creates the default guest templates
-Version: 1.10.5
+Version: 1.10.6
 Release: 1%{?xsrel}%{?dist}
 License: BSD
-Source0: guest-templates-json-1.10.5.tar.gz
+Source0: guest-templates-json-1.10.6.tar.gz
 BuildArch: noarch
 
 Requires: xapi-core
@@ -154,7 +154,7 @@ fi
 %{templatedir}/base-kylin-7.json
 %{templatedir}/base-sle-hvm-64bit.json
 %{templatedir}/base-sle-hvm.json
-%{templatedir}/centos-[78].json
+%{templatedir}/centos-[789].json
 %{templatedir}/coreos.json
 %{templatedir}/debian*.json
 %{templatedir}/kylin-7.json
@@ -166,7 +166,7 @@ fi
 %{templatedir}/sles-12-sp[3-5]-64bit.json
 %{templatedir}/ubuntu*.json
 %{templatedir}/gooroom-2.json
-%{templatedir}/rocky-8.json
+%{templatedir}/rocky-[89].json
 
 %files data-windows
 %{templatedir}/base-windows*.json
@@ -176,6 +176,9 @@ fi
 %{templatedir}/other-install-media.json
 
 %changelog
+* Thu Sep 14 2023 Lunfan Zhang <Lunfan.Zhang@citrix.com> - 1.10.6-1
+- UPD-956: Backport Rocky Linux 9, CentOS Stream 9 and Debian 12's templates to Yangtze
+
 * Fri Aug 18 2023 Lunfan Zhang <Lunfan.Zhang@citrix.com> - 1.10.5-1
 - CP-42910: Add Red Hat Enterprise Linux 9 template
 

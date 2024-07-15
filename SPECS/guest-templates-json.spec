@@ -1,11 +1,11 @@
-%global package_speccommit ed2fbb36c067c4279312bcc674e1528146ef27fa
-%global package_srccommit v1.10.6
+%global package_speccommit b859afae3642654d78dce11da37028d608335d39
+%global package_srccommit v1.10.7
 Name:    guest-templates-json
 Summary: Creates the default guest templates
-Version: 1.10.6
+Version: 1.10.7
 Release: 1%{?xsrel}.1%{?dist}
 License: BSD
-Source0: guest-templates-json-1.10.6.tar.gz
+Source0: guest-templates-json-1.10.7.tar.gz
 
 # XCP-ng patches
 Source1000: almalinux-8.json
@@ -186,6 +186,13 @@ fi
 %{templatedir}/other-install-media.json
 
 %changelog
+* Mon Jul 15 2024 Gael Duperrey <gduperrey@vates.tech> - 1.10.7-1.1
+- Sync with hotfix XS82ECU1069
+- *** Upstream changelog ***
+- * Tue May 21 2024 Lunfan Zhang <Lunfan.Zhang@cloud.com> - 1.10.7-1
+- - CP-48730: Oracle 8 Requires Minimum 2 vCPUs
+- - CP-44647: Add Ubuntu 24.04 template
+
 * Tue Sep 26 2023 Gael Duperrey <gduperrey@vates.fr> - 1.10.6-1.1
 - Sync with hotfix XS82ECU1050
 - Remove XCP-ng's versions of Debian 12, Rocky Linux 9, and Centos Stream 9 templates as they are now provided from upstream

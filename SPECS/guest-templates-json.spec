@@ -1,11 +1,11 @@
-%global package_speccommit ed2fbb36c067c4279312bcc674e1528146ef27fa
-%global package_srccommit v1.10.6
+%global package_speccommit b859afae3642654d78dce11da37028d608335d39
+%global package_srccommit v1.10.7
 Name:    guest-templates-json
 Summary: Creates the default guest templates
-Version: 1.10.6
+Version: 1.10.7
 Release: 1%{?xsrel}%{?dist}
 License: BSD
-Source0: guest-templates-json-1.10.6.tar.gz
+Source0: guest-templates-json-1.10.7.tar.gz
 BuildArch: noarch
 
 Requires: xapi-core
@@ -176,6 +176,10 @@ fi
 %{templatedir}/other-install-media.json
 
 %changelog
+* Tue May 21 2024 Lunfan Zhang <Lunfan.Zhang@cloud.com> - 1.10.7-1
+- CP-48730: Oracle 8 Requires Minimum 2 vCPUs
+- CP-44647: Add Ubuntu 24.04 template
+
 * Thu Sep 14 2023 Lunfan Zhang <Lunfan.Zhang@citrix.com> - 1.10.6-1
 - UPD-956: Backport Rocky Linux 9, CentOS Stream 9 and Debian 12's templates to Yangtze
 

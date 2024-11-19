@@ -3,7 +3,7 @@
 Name:    guest-templates-json
 Summary: Creates the default guest templates
 Version: 2.0.13
-Release: 1%{?xsrel}.1%{?dist}
+Release: 1%{?xsrel}.1.0.ydi.1%{?dist}
 License: BSD
 Source0: guest-templates-json-2.0.13.tar.gz
 
@@ -23,7 +23,7 @@ Requires(preun): systemd
 Requires(postun): systemd
 BuildRequires: python3-devel
 # python-demjson is only required for jsonlint
-BuildRequires: python-demjson python-setuptools
+BuildRequires: python3-demjson python3-setuptools
 BuildRequires: systemd-devel
 Obsoletes: guest-templates-json-data-xenapp
 
@@ -192,6 +192,9 @@ fi
 %{templatedir}/other-install-media.json
 
 %changelog
+* Tue Jul 01 2025 Yann Dirson <yann.dirson@vates.tech> - 2.0.13-1.1.0.ydi.1
+- python3 only
+
 * Tue Mar 04 2025 Samuel Verschelde <stormi-xcp@ylix.fr> - 2.0.13-1.1
 - Rebase on 2.0.13-1
 - *** Upstream changelog ***

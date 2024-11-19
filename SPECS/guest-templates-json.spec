@@ -3,7 +3,7 @@
 Name:    guest-templates-json
 Summary: Creates the default guest templates
 Version: 2.0.10
-Release: 1.3%{?xsrel}%{?dist}
+Release: 1.3.0.1%{?xsrel}%{?dist}
 License: BSD
 Source0: guest-templates-json-2.0.10.tar.gz
 
@@ -24,7 +24,7 @@ Requires(preun): systemd
 Requires(postun): systemd
 BuildRequires: python3-devel
 # python-demjson is only required for jsonlint
-BuildRequires: python-demjson python-setuptools
+BuildRequires: python3-demjson python3-setuptools
 BuildRequires: systemd-devel
 Obsoletes: guest-templates-json-data-xenapp
 
@@ -193,6 +193,9 @@ fi
 %{templatedir}/other-install-media.json
 
 %changelog
+* Mon Nov 18 2024 Yann Dirson <yann.dirson@vates.tech> - 2.0.10-1.3.0.1
+- python3 only
+
 * Tue Jul 23 2024 Gael Duperrey <gduperrey@vates.tech> - 2.0.10-1.3
 - Add generic templates for Linux BIOS and UEFI
 

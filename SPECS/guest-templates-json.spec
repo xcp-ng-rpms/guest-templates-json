@@ -15,10 +15,9 @@ Source1003: centos-stream-8.json
 Source1004: debian-13.json
 Source1005: oel-9.json
 Source1006: oel-10.json
-Source1007: rhel-10.json
-Source1008: rocky-10.json
-Source1009: generic-linux-bios.json
-Source1010: generic-linux-uefi.json
+Source1007: rocky-10.json
+Source1008: generic-linux-bios.json
+Source1009: generic-linux-uefi.json
 
 BuildArch: noarch
 
@@ -80,7 +79,7 @@ Contains the default other guest templates.
 
 install -d %{buildroot}%{templatedir}
 install -m 644 json/*.json %{buildroot}%{templatedir}
-install -m 644 %{SOURCE1000} %{SOURCE1001} %{SOURCE1002} %{SOURCE1003} %{SOURCE1004} %{SOURCE1005} %{SOURCE1006} %{SOURCE1007} %{SOURCE1008} %{SOURCE1009} %{SOURCE1010} %{buildroot}%{templatedir}
+install -m 644 %{SOURCE1000} %{SOURCE1001} %{SOURCE1002} %{SOURCE1003} %{SOURCE1004} %{SOURCE1005} %{SOURCE1006} %{SOURCE1007} %{SOURCE1008} %{SOURCE1009} %{buildroot}%{templatedir}
 install -d %{buildroot}%{_sysconfdir}/xapi.d/vm-templates
 
 install -m 755 service/create-guest-templates-wrapper %{buildroot}%{_bindir}
@@ -204,6 +203,7 @@ fi
 %changelog
 * Mon Jan 05 2026 Tu Dinh <ngoc-tu.dinh@vates.tech> - 2.0.15-1.1
 - Sync with 2.0.15-1
+- Replace rhel-10.json with XenServer's
 - *** Upstream changelog ***
   * Thu Nov 13 2025 Lunfan Zhang <Lunfan.Zhang@cloud.com> - 2.0.15-1
   - CP-310014 Support New Guest Template RHEL 10
@@ -512,4 +512,3 @@ fi
 - CP-21446: Remove old templates from XenServer.
 - CP-21988 Remove Vista template
 - CP-21988 Add legacy windows template
-

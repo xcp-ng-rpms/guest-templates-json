@@ -1,11 +1,11 @@
-%global package_speccommit 3fcfae926eef91f7aad6867b918e0970e4f4f855
-%global package_srccommit v2.0.14
+%global package_speccommit 668f61d027a7787e5f816291f555a18146339e1b
+%global package_srccommit v2.0.15
 Name:    guest-templates-json
 Summary: Creates the default guest templates
-Version: 2.0.14
+Version: 2.0.15
 Release: 1%{?xsrel}.1%{?dist}
 License: BSD
-Source0: guest-templates-json-2.0.14.tar.gz
+Source0: guest-templates-json-2.0.15.tar.gz
 
 # XCP-ng patches
 Source1000: almalinux-8.json
@@ -202,6 +202,17 @@ fi
 %{templatedir}/other-install-media.json
 
 %changelog
+* Mon Jan 05 2026 Tu Dinh <ngoc-tu.dinh@vates.tech> - 2.0.15-1.1
+- Sync with 2.0.15-1
+- *** Upstream changelog ***
+  * Thu Nov 13 2025 Lunfan Zhang <Lunfan.Zhang@cloud.com> - 2.0.15-1
+  - CP-310014 Support New Guest Template RHEL 10
+  - CA-414588 Add the deprecated label for the EOL templates
+
+  * Tue Jan 21 2025 Lunfan Zhang <Lunfan.Zhang@cloud.com> - 2.0.14-1
+  - CP-51980: Add CentOS Stream 10 template
+  - CP-51980: Remove 'preview' label from Ubuntu24.04
+
 * Tue Sep 02 2025 Gael Duperrey <gduperrey@vates.tech> - 2.0.14-1.1
 - Rebase on 2.0.14-1
 - Add templates for almalinux 10, rocky linux 10, debian 13, oracle linux 10, redhat 10

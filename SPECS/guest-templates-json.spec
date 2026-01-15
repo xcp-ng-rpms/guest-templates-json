@@ -1,11 +1,11 @@
-%global package_speccommit 3fcfae926eef91f7aad6867b918e0970e4f4f855
-%global package_srccommit v2.0.14
+%global package_speccommit 668f61d027a7787e5f816291f555a18146339e1b
+%global package_srccommit v2.0.15
 Name:    guest-templates-json
 Summary: Creates the default guest templates
-Version: 2.0.14
+Version: 2.0.15
 Release: 1%{?xsrel}.1%{?dist}
 License: BSD
-Source0: guest-templates-json-2.0.14.tar.gz
+Source0: guest-templates-json-2.0.15.tar.gz
 
 # XCP-ng patches
 Source1000: almalinux-8.json
@@ -15,10 +15,9 @@ Source1003: centos-stream-8.json
 Source1004: debian-13.json
 Source1005: oel-9.json
 Source1006: oel-10.json
-Source1007: rhel-10.json
-Source1008: rocky-10.json
-Source1009: generic-linux-bios.json
-Source1010: generic-linux-uefi.json
+Source1007: rocky-10.json
+Source1008: generic-linux-bios.json
+Source1009: generic-linux-uefi.json
 
 BuildArch: noarch
 
@@ -80,7 +79,7 @@ Contains the default other guest templates.
 
 install -d %{buildroot}%{templatedir}
 install -m 644 json/*.json %{buildroot}%{templatedir}
-install -m 644 %{SOURCE1000} %{SOURCE1001} %{SOURCE1002} %{SOURCE1003} %{SOURCE1004} %{SOURCE1005} %{SOURCE1006} %{SOURCE1007} %{SOURCE1008} %{SOURCE1009} %{SOURCE1010} %{buildroot}%{templatedir}
+install -m 644 %{SOURCE1000} %{SOURCE1001} %{SOURCE1002} %{SOURCE1003} %{SOURCE1004} %{SOURCE1005} %{SOURCE1006} %{SOURCE1007} %{SOURCE1008} %{SOURCE1009} %{buildroot}%{templatedir}
 install -d %{buildroot}%{_sysconfdir}/xapi.d/vm-templates
 
 install -m 755 service/create-guest-templates-wrapper %{buildroot}%{_bindir}
@@ -202,6 +201,18 @@ fi
 %{templatedir}/other-install-media.json
 
 %changelog
+* Mon Jan 05 2026 Tu Dinh <ngoc-tu.dinh@vates.tech> - 2.0.15-1.1
+- Sync with 2.0.15-1
+- Replace rhel-10.json with XenServer's
+- *** Upstream changelog ***
+  * Thu Nov 13 2025 Lunfan Zhang <Lunfan.Zhang@cloud.com> - 2.0.15-1
+  - CP-310014 Support New Guest Template RHEL 10
+  - CA-414588 Add the deprecated label for the EOL templates
+
+  * Tue Jan 21 2025 Lunfan Zhang <Lunfan.Zhang@cloud.com> - 2.0.14-1
+  - CP-51980: Add CentOS Stream 10 template
+  - CP-51980: Remove 'preview' label from Ubuntu24.04
+
 * Tue Sep 02 2025 Gael Duperrey <gduperrey@vates.tech> - 2.0.14-1.1
 - Rebase on 2.0.14-1
 - Add templates for almalinux 10, rocky linux 10, debian 13, oracle linux 10, redhat 10
@@ -501,4 +512,3 @@ fi
 - CP-21446: Remove old templates from XenServer.
 - CP-21988 Remove Vista template
 - CP-21988 Add legacy windows template
-

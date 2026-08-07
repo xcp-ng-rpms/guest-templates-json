@@ -3,7 +3,7 @@
 Name:    guest-templates-json
 Summary: Creates the default guest templates
 Version: 2.1.1
-Release: 1%{?xsrel}%{?dist}
+Release: 1%{?xsrel}~ydi1.1%{?dist}
 License: BSD
 Source0: guest-templates-json-2.1.1.tar.gz
 BuildArch: noarch

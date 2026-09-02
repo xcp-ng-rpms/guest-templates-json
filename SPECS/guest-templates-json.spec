@@ -1,11 +1,11 @@
-%global package_speccommit 668f61d027a7787e5f816291f555a18146339e1b
-%global package_srccommit v2.0.15
+%global package_speccommit a5e0500b20de26b1a87c8009e61b23aff10e996e
+%global package_srccommit v2.0.16
 Name:    guest-templates-json
 Summary: Creates the default guest templates
-Version: 2.0.15
+Version: 2.0.16
 Release: 1%{?xsrel}%{?dist}
 License: BSD
-Source0: guest-templates-json-2.0.15.tar.gz
+Source0: guest-templates-json-2.0.16.tar.gz
 BuildArch: noarch
 
 Requires: xapi-core
@@ -152,16 +152,16 @@ fi
 %{templatedir}/sles-12-sp[12]-64bit.json
 
 %files data-linux
+%{templatedir}/alma-[89].json
+%{templatedir}/alma-10.json
 %{templatedir}/base-el-7.json
 %{templatedir}/base-hvmlinux.json
-%{templatedir}/base-kylin-7.json
 %{templatedir}/base-sle-hvm-64bit.json
 %{templatedir}/base-sle-hvm.json
 %{templatedir}/base-linux-uefi.json
 %{templatedir}/centos-[79].json
 %{templatedir}/centos-10.json
 %{templatedir}/debian*.json
-%{templatedir}/kylin-7.json
 %{templatedir}/oel-[78].json
 %{templatedir}/rhel-[789].json
 %{templatedir}/rhel-10.json
@@ -180,6 +180,11 @@ fi
 %{templatedir}/other-install-media.json
 
 %changelog
+* Thu May 07 2026 Lunfan Zhang <Lunfan.Zhang@cloud.com> - 2.0.16-1
+- CP-311170 Remove kylin Linux 7 Guest templates
+- CP-312320 Support New Guest Templates AlmaLinux 8/9/10
+- CP-312320 Remove 'preview' label from RHEL 10
+
 * Thu Nov 13 2025 Lunfan Zhang <Lunfan.Zhang@cloud.com> - 2.0.15-1
 - CP-310014 Support New Guest Template RHEL 10
 - CA-414588 Add the deprecated label for the EOL templates

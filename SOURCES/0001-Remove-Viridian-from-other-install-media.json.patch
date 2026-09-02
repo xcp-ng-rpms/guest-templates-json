@@ -1,0 +1,22 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Tu Dinh <ngoc-tu.dinh@vates.tech>
+Date: Wed, 2 Sep 2026 15:03:45 +0200
+Subject: [PATCH] Remove Viridian from other-install-media.json
+
+Windows VMs should really use the Windows templates to get the full set
+of Viridian enlightenments.
+
+Signed-off-by: Tu Dinh <ngoc-tu.dinh@vates.tech>
+
+diff --git a/json/other-install-media.json b/json/other-install-media.json
+index 75f6a1d8fd0f..866abc47a1ef 100644
+--- a/json/other-install-media.json
++++ b/json/other-install-media.json
+@@ -12,7 +12,6 @@
+         "install-methods": "cdrom"
+     },
+     "platform": {
+-        "viridian": "true",
+         "secureboot": "false"
+     },
+     "HVM_boot_policy": "BIOS order",

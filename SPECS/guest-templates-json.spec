@@ -1,23 +1,22 @@
-%global package_speccommit 668f61d027a7787e5f816291f555a18146339e1b
-%global package_srccommit v2.0.15
+%global package_speccommit a5e0500b20de26b1a87c8009e61b23aff10e996e
+%global package_srccommit v2.0.16
 Name:    guest-templates-json
 Summary: Creates the default guest templates
-Version: 2.0.15
+Version: 2.0.16
 Release: 1%{?xsrel}.1%{?dist}
 License: BSD
-Source0: guest-templates-json-2.0.15.tar.gz
+Source0: guest-templates-json-2.0.16.tar.gz
 
 # XCP-ng patches
-Source1000: almalinux-8.json
-Source1001: almalinux-9.json
-Source1002: almalinux-10.json
-Source1003: centos-stream-8.json
-Source1004: debian-13.json
-Source1005: oel-9.json
-Source1006: oel-10.json
-Source1007: rocky-10.json
-Source1008: generic-linux-bios.json
-Source1009: generic-linux-uefi.json
+Source1000: centos-stream-8.json
+Source1001: debian-13.json
+Source1002: oel-9.json
+Source1003: oel-10.json
+Source1004: rocky-10.json
+Source1005: generic-linux-bios.json
+Source1006: generic-linux-uefi.json
+
+Patch1000: 0001-Remove-Viridian-from-other-install-media.json.patch
 
 BuildArch: noarch
 
@@ -79,7 +78,7 @@ Contains the default other guest templates.
 
 install -d %{buildroot}%{templatedir}
 install -m 644 json/*.json %{buildroot}%{templatedir}
-install -m 644 %{SOURCE1000} %{SOURCE1001} %{SOURCE1002} %{SOURCE1003} %{SOURCE1004} %{SOURCE1005} %{SOURCE1006} %{SOURCE1007} %{SOURCE1008} %{SOURCE1009} %{buildroot}%{templatedir}
+install -m 644 %{SOURCE1000} %{SOURCE1001} %{SOURCE1002} %{SOURCE1003} %{SOURCE1004} %{SOURCE1005} %{SOURCE1006} %{buildroot}%{templatedir}
 install -d %{buildroot}%{_sysconfdir}/xapi.d/vm-templates
 
 install -m 755 service/create-guest-templates-wrapper %{buildroot}%{_bindir}
@@ -166,11 +165,10 @@ fi
 %{templatedir}/sles-12-sp[12]-64bit.json
 
 %files data-linux
-%{templatedir}/almalinux-[89].json
-%{templatedir}/almalinux-10.json
+%{templatedir}/alma-[89].json
+%{templatedir}/alma-10.json
 %{templatedir}/base-el-7.json
 %{templatedir}/base-hvmlinux.json
-%{templatedir}/base-kylin-7.json
 %{templatedir}/base-sle-hvm-64bit.json
 %{templatedir}/base-sle-hvm.json
 %{templatedir}/base-linux-uefi.json
@@ -178,7 +176,6 @@ fi
 %{templatedir}/centos-stream-8.json
 %{templatedir}/centos-10.json
 %{templatedir}/debian*.json
-%{templatedir}/kylin-7.json
 %{templatedir}/oel-[789].json
 %{templatedir}/oel-10.json
 %{templatedir}/rhel-[789].json
@@ -201,6 +198,16 @@ fi
 %{templatedir}/other-install-media.json
 
 %changelog
+* Wed Sep 02 2026 Tu Dinh <ngoc-tu.dinh@vates.tech> - 2.0.16-1.1
+- Sync with 2.0.16-1
+- Replace almalinux templates with XenServer's
+- Remove Viridian from other-install-media.json
+- *** Upstream changelog ***
+  * Thu May 07 2026 Lunfan Zhang <Lunfan.Zhang@cloud.com> - 2.0.16-1
+  - CP-311170 Remove kylin Linux 7 Guest templates
+  - CP-312320 Support New Guest Templates AlmaLinux 8/9/10
+  - CP-312320 Remove 'preview' label from RHEL 10
+
 * Mon Jan 05 2026 Tu Dinh <ngoc-tu.dinh@vates.tech> - 2.0.15-1.1
 - Sync with 2.0.15-1
 - Replace rhel-10.json with XenServer's
@@ -208,10 +215,6 @@ fi
   * Thu Nov 13 2025 Lunfan Zhang <Lunfan.Zhang@cloud.com> - 2.0.15-1
   - CP-310014 Support New Guest Template RHEL 10
   - CA-414588 Add the deprecated label for the EOL templates
-
-  * Tue Jan 21 2025 Lunfan Zhang <Lunfan.Zhang@cloud.com> - 2.0.14-1
-  - CP-51980: Add CentOS Stream 10 template
-  - CP-51980: Remove 'preview' label from Ubuntu24.04
 
 * Tue Sep 02 2025 Gael Duperrey <gduperrey@vates.tech> - 2.0.14-1.1
 - Rebase on 2.0.14-1

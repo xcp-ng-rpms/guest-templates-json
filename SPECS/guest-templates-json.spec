@@ -3,7 +3,7 @@
 Name:    guest-templates-json
 Summary: Creates the default guest templates
 Version: 2.0.17
-Release: 1%{?xsrel}.1%{?dist}
+Release: 1%{?xsrel}.1~guesttemplates.1%{?dist}
 License: BSD
 Source0: guest-templates-json-2.0.17.tar.gz
 

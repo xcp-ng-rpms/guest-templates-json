@@ -1,20 +1,19 @@
-%global package_speccommit a5e0500b20de26b1a87c8009e61b23aff10e996e
-%global package_srccommit v2.0.16
+%global package_speccommit aa239a674f7c7cea6131704d8bdba72bf729bbed
+%global package_srccommit v2.0.17
 Name:    guest-templates-json
 Summary: Creates the default guest templates
-Version: 2.0.16
+Version: 2.0.17
 Release: 1%{?xsrel}.1%{?dist}
 License: BSD
-Source0: guest-templates-json-2.0.16.tar.gz
+Source0: guest-templates-json-2.0.17.tar.gz
 
 # XCP-ng patches
 Source1000: centos-stream-8.json
 Source1001: debian-13.json
 Source1002: oel-9.json
 Source1003: oel-10.json
-Source1004: rocky-10.json
-Source1005: generic-linux-bios.json
-Source1006: generic-linux-uefi.json
+Source1004: generic-linux-bios.json
+Source1005: generic-linux-uefi.json
 
 Patch1000: 0001-Remove-Viridian-from-other-install-media.json.patch
 
@@ -78,7 +77,7 @@ Contains the default other guest templates.
 
 install -d %{buildroot}%{templatedir}
 install -m 644 json/*.json %{buildroot}%{templatedir}
-install -m 644 %{SOURCE1000} %{SOURCE1001} %{SOURCE1002} %{SOURCE1003} %{SOURCE1004} %{SOURCE1005} %{SOURCE1006} %{buildroot}%{templatedir}
+install -m 644 %{SOURCE1000} %{SOURCE1001} %{SOURCE1002} %{SOURCE1003} %{SOURCE1004} %{SOURCE1005} %{buildroot}%{templatedir}
 install -d %{buildroot}%{_sysconfdir}/xapi.d/vm-templates
 
 install -m 755 service/create-guest-templates-wrapper %{buildroot}%{_bindir}
@@ -198,6 +197,14 @@ fi
 %{templatedir}/other-install-media.json
 
 %changelog
+* Thu Oct 22 2026 Baptiste Le Duc <baptiste.le-duc@vates.tech> - 2.0.17-1.1
+- Sync with 2.0.17-1
+- Update rocky-10 template with XenServer's
+- *** Upstream changelog ***
+  * Thu Jul 30 2026 Lunfan Zhang <Lunfan.Zhang@cloud.com> - 2.0.17-1
+  - CP-313416 Support New Guest Template Rocky Linux 10
+  - CP-313414 Support New Guest Template Ubuntu 26.04
+
 * Wed Sep 02 2026 Tu Dinh <ngoc-tu.dinh@vates.tech> - 2.0.16-1.1
 - Sync with 2.0.16-1
 - Replace almalinux templates with XenServer's

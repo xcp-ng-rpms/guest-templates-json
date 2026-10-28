@@ -1,0 +1,11 @@
+{
+    "derived_from": "base-windows.json",
+    "HVM_boot_params": { "firmware": "uefi", "order": "cd" },
+    "vcpus_min": 2,
+    "platform": {
+        "device-model": null,
+        "secureboot": "auto"
+    },
+    "supports_uefi": "yes",
+    "supports_secure_boot": "yes"
+}

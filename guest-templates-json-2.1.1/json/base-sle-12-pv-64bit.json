@@ -1,0 +1,5 @@
+{
+    "derived_from": "base-sle-pv-64bit.json",
+    "PV_args": "console=hvc0 xencons=hvc"
+}
+

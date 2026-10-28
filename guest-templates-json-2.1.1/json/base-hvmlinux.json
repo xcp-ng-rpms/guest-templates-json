@@ -1,0 +1,27 @@
+{
+    "name_description": "To use this template from the CLI, install your VM using vm-install, then set other-config-install-repository to the path to your network repository, e.g. http://<server>/<path> or nfs:server:/<path>",
+    "max_memory": "1536G",
+    "vcpus_max": 64,
+    "number_of_vbds": 255,
+    "number_of_vifs": 7,
+    "allow_gpu_passthrough": true,
+    "allow_vgpu": true,
+    "allow_network_sriov": true,
+    "other_config": {
+        "linux_template": "true",
+        "install-methods": "cdrom,nfs,http,ftp"
+    },
+    "platform": {
+        "vga": "std",
+        "videoram": "8",
+        "viridian": "false",
+        "device_id": "0001",
+        "device-model": "qemu-upstream-compat",
+        "secureboot": "false"
+    },
+    "HVM_boot_policy": "BIOS order",
+    "HVM_boot_params": { "firmware": "bios", "order": "cdn" },
+    "supports_bios": "yes",
+    "supports_uefi": "no",
+    "supports_secure_boot": "no"
+}

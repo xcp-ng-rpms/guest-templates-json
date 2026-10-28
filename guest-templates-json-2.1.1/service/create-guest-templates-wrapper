@@ -1,0 +1,72 @@
+#!/bin/bash
+
+# This is a small wrapper around create-guest-templates.
+# It is run the first time the host is booted after installation.
+
+set -e
+XE=/usr/bin/xe
+
+UPGRADE="false"
+FIRSTBOOT_DATA_DIR=/etc/firstboot.d/data
+[ -r ${FIRSTBOOT_DATA_DIR}/host.conf ] && . ${FIRSTBOOT_DATA_DIR}/host.conf
+
+if [ ! -f /etc/xensource-inventory ]; then
+    # Skip if we're being run during host installation.
+    exit 0
+fi
+
+# Return zero if this host is a master and non-zero otherwise.
+this_host_is_master(){
+    # Note that this is (a) firstboot (after install, upgrade or eject) and (b) UPGRADE is set.
+    # Therefore HA isn't running and it's safe to peek at the pool.conf. The reason we don't use the
+    # the CLI is because, if we're a slave, we want to detect this without blocking and return from
+    # this script.
+    pool_role=$(cat < /etc/xensource/pool.conf)
+    [ "${pool_role}" = "master" ]
+    return $?
+}
+
+# Return zero if xapi VMs have the is-default-template field and non-zero otherwise.
+check_has_default_template_field() {
+    # disable set -e option saving current options state, then reinstate it before returning
+    has_new_key=1
+    $XE vm-param-get param-name=is-default-template uuid=$CONTROL_DOMAIN_UUID &>/dev/null && has_new_key=0
+    return $has_new_key
+}
+
+# Remove all default_templates if we have upgraded from a platform version < 2.1.1
+remove_built_in_templates() {
+    source /etc/xensource-inventory
+    source /var/tmp/.previousInventory 2> /dev/null ||:
+    major=$(echo "$PLATFORM_VERSION" | sed 's/^\([0-9]*\).*/\1/')
+    minor=$(echo "$PLATFORM_VERSION" | sed 's/^[0-9]*\.\([0-9]*\).*/\1/')
+    sub=$(echo "$PLATFORM_VERSION" | sed 's/^[0-9]*\.[0-9]*\.\([0-9]*\).*/\1/')
+    if [ "$major" -lt 2 -o \
+         \( "$major" -eq 2 -a "$minor" -lt 1 \) -o \
+         \( "$major" -eq 2 -a "$minor" -eq 1 -a "$sub" -lt 1 \) ]; then
+        echo "Removing all default templates"
+        has_default_template_field=check_has_default_template_field
+        IFS=","; for uuid in $($XE template-list other-config:default_template=true --minimal); do
+        echo "Removing old template: $($XE template-list uuid=$uuid params=name-label --minimal)"
+        if $has_default_template_field; then
+            $XE vm-param-set uuid=$uuid is-default-template=false is-a-template=false
+        else
+            $XE vm-param-set uuid=$uuid is-a-template=false other-config:default_template=false
+        fi
+        $XE vm-destroy uuid=$uuid
+        done
+    fi
+}
+
+if this_host_is_master; then
+    remove_built_in_templates
+    create-guest-templates
+    if [ "$UPGRADE" != "true" ]; then
+        # Ensure changes are synced to disk
+        xe pool-sync-database
+    fi
+fi
+
+
+touch /var/lib/misc/ran-create-guest-templates
+exit 0

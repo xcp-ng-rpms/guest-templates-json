@@ -1,0 +1,23 @@
+{
+    "uuid": "552bce37-51b2-445d-84f2-5f33fa112d7e",
+    "reference_label": "other-install-media",
+    "name_label": "Other install media",
+    "name_description": "Template which allows VM installation from install media",
+    "min_memory": "128M",
+    "max_memory": "128G",
+    "vcpus_max": 64,
+    "number_of_vbds": 255,
+    "number_of_vifs": 7,
+    "other_config": {
+        "install-methods": "cdrom"
+    },
+    "platform": {
+        "viridian": "true",
+        "secureboot": "false"
+    },
+    "HVM_boot_policy": "BIOS order",
+    "HVM_boot_params": { "firmware": "bios", "order": "cd" },
+    "supports_bios": "yes",
+    "supports_uefi": "yes",
+    "supports_secure_boot": "yes"
+}
